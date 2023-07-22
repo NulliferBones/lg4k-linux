@@ -13,7 +13,7 @@
 #define pr_fmt(fmt) KBUILD_MODNAME ": " "%s, %d: " fmt, __func__, __LINE__
 
 #include "typedef.h"
-#include <stdarg.h>
+#include <linux/stdarg.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <media/v4l2-device.h>
