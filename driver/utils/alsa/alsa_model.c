@@ -77,7 +77,6 @@ static struct snd_pcm_ops alsa_model_pcm_ops = {
     .prepare = alsa_model_prepare,
     .trigger = alsa_model_card_trigger,
     .pointer = alsa_model_pointer,
-    .page = snd_pcm_lib_get_vmalloc_page,
 };
 
 static struct snd_pcm_hardware alsa_model_hw = {
@@ -211,7 +210,7 @@ static int alsa_model_hw_params(struct snd_pcm_substream *substream, struct snd_
         substream->runtime->dma_area = NULL;
     }
 
-    return snd_pcm_lib_alloc_vmalloc_buffer(substream, params_buffer_bytes(hw_params));
+    return snd_pcm_lib_malloc_pages(substream, params_buffer_bytes(hw_params));
 }
 
 static int alsa_model_hw_free(struct snd_pcm_substream *substream)
@@ -225,7 +224,7 @@ static int alsa_model_hw_free(struct snd_pcm_substream *substream)
         substream->runtime->dma_bytes = 0;
     }
 
-    return snd_pcm_lib_free_vmalloc_buffer(substream);
+    return snd_pcm_lib_free_pages(substream);
 }
 
 static int alsa_model_prepare(struct snd_pcm_substream *substream)
@@ -619,19 +618,23 @@ alsa_model_handle_t alsa_model_init(cxt_mgr_handle_t cxt_mgr, alsa_model_setup_t
         {
             switch (err)
             {
-            case ALSA_MODEL_REGISTER_SND_CARD_ERROR:
-            case ALSA_MODEL_CREATE_PCM_ERR:
-                snd_card_free(card);
-                // fall through
-            case ALSA_MODEL_CREATE_SND_CARD_ERROR:
-                cxt_manager_unref_context(alsa_cxt);
-                // fall through
-            case ALSA_MODEL_ERROR_ALLOC:
-            case ALSA_MODEL_NO_SETUP_INFO:
-                break;
-            default:
-                break;
+                case ALSA_MODEL_REGISTER_SND_CARD_ERROR:
+                case ALSA_MODEL_CREATE_PCM_ERR:
+                    snd_card_free(card);
+                    fallthrough;
+
+                case ALSA_MODEL_CREATE_SND_CARD_ERROR:
+                    cxt_manager_unref_context(alsa_cxt);
+                    fallthrough;
+
+                case ALSA_MODEL_ERROR_ALLOC:
+                case ALSA_MODEL_NO_SETUP_INFO:
+                    break;
+
+                default:
+                    break;
             }
+
         }
 
     }
