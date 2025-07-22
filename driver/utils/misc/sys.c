@@ -161,7 +161,11 @@ void sys_del_timer(void* handle)
 
     if(wait_sem_cxt == NULL)
         return;
+    #if LINUX_VERSION_CODE >= KERNEL_VERSION(6,15,0)
+    timer_delete_sync(&wait_sem_cxt->timer);
+    #else
     del_timer_sync(&wait_sem_cxt->timer);
+    #endif
 }
 
 void sys_wait_sem_timer(void* handle, unsigned int timeout)
@@ -236,7 +240,7 @@ sys_spin_lock_t *sys_new_spinlock(const char *name,sys_spin_lock_level_e level)
 void sys_spin_lock(sys_spin_lock_t *lock)
 {
     sys_spin_lock_cxt_t *lock_cxt=container_of(lock,sys_spin_lock_cxt_t,interface);
-    
+
     if(lock_cxt)
     {
         switch(lock_cxt->level)
