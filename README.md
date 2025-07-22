@@ -1,7 +1,6 @@
 # Live Gamer 4K Linux driver
 
-WOULD REALLY APPRECIATE IT IF SOMEONE COULD FIX THIS BETTER THAN I CAN.
-there are crashing problems I can not solve
+WOULD REALLY APPRECIATE IT IF SOMEONE COULD HELP ME
 
 CURRENTLY NOT WORKING ON NEW KERNELS AT ALL
 (Update) Will now build, but is killed on install. and will crash your system eventually.
