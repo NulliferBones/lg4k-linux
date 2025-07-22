@@ -1,4 +1,4 @@
-$(shell ./create_symlinks.sh)
+$(shell sh ./create_symlinks.sh)
 
 ARCH ?= $(shell uname -m)
 ifeq ($(ARCH),x86_64)
