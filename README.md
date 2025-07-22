@@ -16,6 +16,10 @@ and run inside lg4k-linux folder
 ./build.sh
 ./install.sh
 ```
+
+
+
+---
 Based on the Linux driver for the [CL511HN](https://www.avermedia.com/professional/product/cl511hn/overview)
 which can be downloaded here: [Generic_Ubuntu_CL511HN_Drv_1.0.0031.zip](http://storage.avermedia.com/web_release_www/CL511HN/Generic_Ubuntu_CL511HN_Drv_1.0.0031.zip)
 
