@@ -7,10 +7,16 @@ CURRENTLY NOT WORKING ON NEW KERNELS AT ALL
 (Update) Will now build, but is killed on install. and will crash your system eventually.
 Luckily it's a temporary install so on reboot it's no longer loaded.
 
-to test build run
+to test build
+
+```
+git clone https://github.com/NulliferBones/lg4k-linux
+```
+and run inside lg4k-linux folder
+```
 ./build.sh
 ./install.sh
-
+```
 Based on the Linux driver for the [CL511HN](https://www.avermedia.com/professional/product/cl511hn/overview)
 which can be downloaded here: [Generic_Ubuntu_CL511HN_Drv_1.0.0031.zip](http://storage.avermedia.com/web_release_www/CL511HN/Generic_Ubuntu_CL511HN_Drv_1.0.0031.zip)
 
