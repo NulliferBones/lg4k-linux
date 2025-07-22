@@ -289,7 +289,7 @@ int v4l2_model_ioctl_enum_fmt_vid_cap(struct file *file, void *fh, struct v4l2_f
         pr_info("%s pixfmt=%d\n", pixfmt->name, f->index);
         f->index = index;
 
-        strlcpy(f->description, pixfmt->name, sizeof(f->description));
+        strncpy(f->description, pixfmt->name, sizeof(f->description));
         f->pixelformat=pixfmt->fourcc;
     }
 
