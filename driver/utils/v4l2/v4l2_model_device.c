@@ -95,9 +95,8 @@ static struct v4l2_ioctl_ops v4l2_model_ioctl_ops = {
 	.vidioc_enum_frameintervals 	= v4l2_model_ioctl_enum_frameintervals,
 	.vidioc_g_parm        		= v4l2_model_ioctl_g_parm,
 	.vidioc_s_parm        		= v4l2_model_ioctl_s_parm,
-	.vidioc_g_ctrl        		= v4l2_model_ioctl_g_ctrl,
-	.vidioc_s_ctrl        		= v4l2_model_ioctl_s_ctrl,
-	.vidioc_queryctrl           	= v4l2_model_ioctl_queryctrl,
+	.vidioc_g_std        		= v4l2_model_ioctl_g_std,
+	.vidioc_querycap           	= v4l2_model_ioctl_querycap,
 	//.vidioc_g_edid		= v4l2_model_ioctl_g_edid,
 	//.vidioc_s_edid		= v4l2_model_ioctl_s_edid,
 	
