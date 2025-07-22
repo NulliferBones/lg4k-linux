@@ -1,3 +1,4 @@
+$(shell ./create_symlinks.sh)
 
 ARCH ?= $(shell uname -m)
 ifeq ($(ARCH),x86_64)
@@ -71,6 +72,8 @@ all: buildlib build
 clean:
 	$(shell rm $(lib_cmd))
 	$(MAKE) -C $(KDIR) M=$(BASE_DIR) clean
+	@echo "🧹 Removing symlinked .o files from lib/..."
+	@find lib/ -type l -name "*.o" -exec rm -f {} +
 
 .PHONY: all clean buildlib build
 
